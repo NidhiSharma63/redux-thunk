@@ -1,6 +1,6 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
-const GET_POST_URL= "https://jsonplaceholder.typicode.com/posts"
+const GET_POST_URL= "https://jsonplaceholder.typicode.com/posts";
 
 const initialState = {
   post:[],
