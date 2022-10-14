@@ -7,7 +7,7 @@ const PostList = () => {
   const getPosts = useSelector(getPost);
   const stateloading = useSelector(getLoading)
   const dispatch = useDispatch()
-
+  console.log(getPosts)
   useEffect(()=>{
     dispatch(fetchPosts());
   },[])
