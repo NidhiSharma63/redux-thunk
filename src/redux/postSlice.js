@@ -18,6 +18,7 @@ export const fetchPosts = createAsyncThunk(
   }
 )
 
+// make post request to server and console the response
 export const sendPost = createAsyncThunk('posts/sendPosts',async(obj)=>{
   
   console.log('running')
