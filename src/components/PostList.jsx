@@ -15,14 +15,22 @@ const PostList = () => {
   return (
   <>
     <div className="top">
+      <label htmlFor="title">
+        Title: 
+        <input 
+          type="text"
+          name='title'
+          value={titleValue}
+          onChange={(e)=>setTitleValue(e.target.value)} />
+      </label>
+      <label htmlFor="body">
+        Body: 
       <input 
         type="text"
-        value={titleValue}
-        onChange={(e)=>setTitleValue(e.target.value)} />
-      <input 
-        type="text"
+        name='body'
         value={value}
         onChange={(e)=>setValue(e.target.value)} />
+      </label>
       <button
       onClick={()=>dispatch(sendPost({title:titleValue,body:value,userId:'1'}))}>submit</button>
     </div>
