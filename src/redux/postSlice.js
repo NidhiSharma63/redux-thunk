@@ -10,14 +10,27 @@ const initialState = {
 
 // fetch the post
 export const fetchPosts = createAsyncThunk(
-  'posts/fetchPosts', // yha pr action name vhi rkhna h jo slice ka h
+  'posts/fetchPosts',
   async () => {
-    console.log('first')
     const response = await fetch(GET_POST_URL)
     const data = await response.json();
     return data
   }
 )
+
+export const sendPost = createAsyncThunk('posts/sendPosts',async(obj)=>{
+  
+  console.log('running')
+  fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+  body: JSON.stringify(obj),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+  })
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+})
 
 const postSlice = createSlice({
   name: 'posts',

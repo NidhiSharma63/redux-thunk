@@ -1,17 +1,31 @@
 import React, { useState,useEffect } from 'react';
-import {fetchPosts,getPost,getLoading} from '../redux/postSlice';
+import {fetchPosts,sendPost,getPost,getLoading} from '../redux/postSlice';
 import {useSelector,useDispatch} from 'react-redux'
 
 const PostList = () => {
 
+  const [value,setValue] = useState('');
+  const [titleValue,setTitleValue] = useState('');
+
   const getPosts = useSelector(getPost);
-  const stateloading = useSelector(getLoading)
   const dispatch = useDispatch()
-  console.log(getPosts)
   useEffect(()=>{
     dispatch(fetchPosts());
-  },[])
+  },[]);
   return (
+  <>
+    <div className="top">
+      <input 
+        type="text"
+        value={titleValue}
+        onChange={(e)=>setTitleValue(e.target.value)} />
+      <input 
+        type="text"
+        value={value}
+        onChange={(e)=>setValue(e.target.value)} />
+      <button
+      onClick={()=>dispatch(sendPost({title:titleValue,body:value,userId:'1'}))}>submit</button>
+    </div>
     <div className='post-wrapper'>
       {
         getPosts.map((post,index)=>(
@@ -21,7 +35,8 @@ const PostList = () => {
           </div>
         ))
       }
-    </div>
+    </div>    
+  </>
   )
 }
 
